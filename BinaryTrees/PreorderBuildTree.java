@@ -27,10 +27,20 @@ public class PreorderBuildTree {
             return newNode;
         }
     }
+    public static void preorderPrint(Node node){
+        if(node == null){
+            //System.out.print(-1+" "); //to print -1 to print the initial pre-order array
+            return;
+        }
+
+        System.out.print(node.data+" ");
+        preorderPrint(node.left);
+        preorderPrint(node.right);
+    }
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
-        BinaryTree tree = new BinaryTree();
-        Node root = tree.buildTree(nodes);
-        System.out.println(root.data);
+        
+        Node root = BinaryTree.buildTree(nodes);
+        preorderPrint(root);
     }
 }
