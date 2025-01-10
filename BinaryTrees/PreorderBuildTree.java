@@ -38,7 +38,7 @@ public class PreorderBuildTree {
         preorderPrint(node.left);
         preorderPrint(node.right);
     }
-
+    
     public static void inorderPrint(Node node){
         if(node == null){
             return;
@@ -55,6 +55,7 @@ public class PreorderBuildTree {
         postorderPrint(node.left);
         postorderPrint(node.right);
         System.out.print(node.data+" ");
+        //sum += node.data;
     }
 
     public static void levelorderPrint(Node node){
@@ -87,7 +88,35 @@ public class PreorderBuildTree {
                 }
             }
         }
+    }
 
+    public static int height(Node node){
+        //check if the root node is null which means there is no tree
+        if(node == null){
+            return 0;
+        }
+        int lh = height(node.left); //recursing for left half
+        int rh = height(node.right); //recursing for right half
+        return Math.max(lh,rh) + 1; //returning the maximum of left or right + 1 for the step taken from child to parent node
+    }
+
+    public static int countNodes(Node node){
+        //check if the root node is null which means there is no tree or we have reached the end
+        if(node == null){
+            return 0;
+        }
+        int leftCount = countNodes(node.left); //recursing for left half
+        int rightCount = countNodes(node.right); //recuridng for right half
+        return leftCount + rightCount + 1;
+    }
+
+    public static int sumNodes(Node node){
+        if(node == null){
+            return 0;
+        }
+        int leftSum = sumNodes(node.left);
+        int rightSum = sumNodes(node.right);
+        return leftSum + rightSum + node.data;
     }
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
@@ -100,5 +129,8 @@ public class PreorderBuildTree {
         postorderPrint(root);
         System.out.println();
         levelorderPrint(root);
-    }
+        System.out.println("Height of the tree is "+height(root));
+        System.out.println("Total present nodes are "+countNodes(root));
+        System.out.println("Sum is "+sumNodes(root));
+    }   
 }
