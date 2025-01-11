@@ -118,6 +118,19 @@ public class PreorderBuildTree {
         int rightSum = sumNodes(node.right);
         return leftSum + rightSum + node.data;
     }
+    public static int diameter(Node node){
+        if(node == null){
+            return 0;
+        }
+
+        int leftDiam = diameter(node.left);
+        int leftHeight = height(node.left);
+        int rightDiam = diameter(node.right);
+        int rightHeigh = height(node.right);
+
+        int selfDiam = leftHeight + rightHeigh + 1;
+        return Math.max(Math.max(leftDiam, rightDiam), selfDiam);
+    }
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
         
@@ -132,5 +145,7 @@ public class PreorderBuildTree {
         System.out.println("Height of the tree is "+height(root));
         System.out.println("Total present nodes are "+countNodes(root));
         System.out.println("Sum is "+sumNodes(root));
+
+        System.out.println(diameter(root));
     }   
 }
