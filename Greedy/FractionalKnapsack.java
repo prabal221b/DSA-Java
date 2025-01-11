@@ -29,13 +29,16 @@ public class FractionalKnapsack {
             int index = (int)items[i][0];  //storing index
             double ratio = items[i][1]; //storing ratio
             
-            
+            //if out weight is less than weight left we store the value
             if(weight[index] <= maxWeight){
                 totalValue +=  value[index];
                 maxWeight -= weight[index];
             }
-            
+            //else we store the fraction
             else{
+                if(maxWeight ==0){
+                    break;
+                }
                 totalValue += (int)(ratio * maxWeight);
                 maxWeight =0;
                 break;
