@@ -177,4 +177,5 @@ public class PreorderBuildTree {
         Info data = diameter2(root);
         System.out.println("Diameter from approach 2 is " +data.diam);
     }   
+
 }
