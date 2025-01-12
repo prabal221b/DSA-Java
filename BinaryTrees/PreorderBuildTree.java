@@ -131,6 +131,33 @@ public class PreorderBuildTree {
         int selfDiam = leftHeight + rightHeigh + 1;
         return Math.max(Math.max(leftDiam, rightDiam), selfDiam);
     }
+
+
+    //class to store diamater and height
+    public static class Info{
+        int ht;
+        int diam;
+        public Info(int ht, int diam){
+            this.ht = ht;
+            this.diam = diam;
+        }
+    }
+    public static Info diameter2(Node node){
+        if(node == null){
+            return new Info(0,0);
+        }
+        //recursing to find height or left and right nodes
+        Info left = diameter2(node.left);
+        Info right = diameter2(node.right);
+
+        //diamater is maximum or either left diamater or right diameter or self diaameter which includes sum of left height right height and +1
+        int diam = Math.max(Math.max(left.diam, right.diam) , left.ht + right.ht + 1);
+        //max height is left height or right height including self node so +1
+        int ht = Math.max(left.ht, right.ht) + 1;
+
+
+        return new Info(ht , diam);
+    }
     public static void main(String[] args) {
         int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
         
@@ -146,6 +173,8 @@ public class PreorderBuildTree {
         System.out.println("Total present nodes are "+countNodes(root));
         System.out.println("Sum is "+sumNodes(root));
 
-        System.out.println(diameter(root));
+        System.out.println("Diameter from approach 1 is"+diameter(root));
+        Info data = diameter2(root);
+        System.out.println("Diameter from approach 2 is " +data.diam);
     }   
 }
