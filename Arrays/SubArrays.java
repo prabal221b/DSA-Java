@@ -13,7 +13,6 @@ public class SubArrays {
                     maxSum = currentSum;
                 }
             }
-            //System.out.println();
         }
         System.out.println("Max Subarray Sum is " +maxSum);
     }
