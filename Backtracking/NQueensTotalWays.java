@@ -1,16 +1,9 @@
 package Backtracking;
 
-public class NQueens {
-    //to print the final chess board
-    public static void printBoard(char[][] arr){
-        System.out.println("---------Chess Board---------");
-        for(int i=0; i<arr.length; i++){
-            for(int j=0; j<arr[0].length; j++){
-                System.out.print(arr[i][j]+" ");
-            }
-            System.out.println();
-        }
-    }
+public class NQueensTotalWays {
+    //to count number of ways to put the n queens in n*n chess board
+    static int count=0;
+
     //to check if the position is attackable by other previous queens or not
     public static boolean isSafe(char[][] arr, int row, int coloumn){
         //to check in upword direction
@@ -44,7 +37,7 @@ public class NQueens {
     public static void nQueens(char[][] arr, int row){
         //when we reach the end of the board 
         if(row == arr.length){
-            printBoard(arr); //print the final solution and return
+            count++; //increase the count
             return;
         }
         //work
@@ -65,7 +58,7 @@ public class NQueens {
                 board[i][j] = '*';
             }
         }
-
         nQueens(board, 0);
+        System.out.println("There are total of "+count+" ways to put "+n+" Queens in "+n+"x"+n+" Chess Board.");
     }
 }
